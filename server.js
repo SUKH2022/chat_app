@@ -1,7 +1,7 @@
 const path = require("path");
-// const http = require("http");
+const http = require("http");
 const express = require("express");
-// const socketio = require("socket.io");
+const socketio = require("socket.io");
 // const formatMessage = require("./utils/messages");
 // const createAdapter = require("@socket.io/redis-adapter").createAdapter;
 // const redis = require("redis");
@@ -15,8 +15,8 @@ const express = require("express");
 // } = require("./utils/users");
 
 const app = express();
-// const server = http.createServer(app);
-// const io = socketio(server);
+const server = http.createServer(app);
+const io = socketio(server);
 
 // Set static folder
 app.use(express.static(path.join(__dirname, "public")));
@@ -30,8 +30,10 @@ app.use(express.static(path.join(__dirname, "public")));
 //   io.adapter(createAdapter(pubClient, subClient));
 // })();
 
-// // Run when client connects
-// io.on("connection", (socket) => {
+// Run when client connects
+io.on("connection", (socket) => {
+  console.log('New Ws Connection.');
+});
 //   console.log(io.of("/").adapter);
 //   socket.on("joinRoom", ({ username, room }) => {
 //     const user = userJoin(socket.id, username, room);
