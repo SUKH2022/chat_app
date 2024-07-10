@@ -51,7 +51,7 @@ Follow these steps to get the project up and running on your local machine:
 5. ## **Live Website Link:**
 
    ```
-   http://localhost:3000
+   http://....
    ```
 
 
@@ -216,5 +216,5 @@ Contributions are welcome! Please follow these steps to contribute:
 
 - Author: Sukhpreet Saini
 - Vansh
-- 
-- 
+- Astu
+- Vishal
