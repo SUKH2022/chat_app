@@ -26,19 +26,19 @@ io.on("connection", (socket) => {
     // Welcome current user
     socket.emit("message", formatMessage(botName, "Welcome to Chat_App!"));
 
-    // Broadcast when a user connects
+    // Broadcast when a user connects to the course
     socket.broadcast
       .to(user.room)
       .emit("message", formatMessage(botName, `${user.username} has joined the chat`));
 
-    // Send users and room info
+    // Send users and room information
     io.to(user.room).emit("roomUsers", {
       room: user.room,
       users: getRoomUsers(user.room),
     });
   });
 
-  // Listen for chatMessage
+  // Listen to the chatMessage
   socket.on("chatMessage", (msg) => {
     const user = getCurrentUser(socket.id);
 
