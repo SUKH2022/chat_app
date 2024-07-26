@@ -2,6 +2,8 @@ const chatForm = document.getElementById('chat-form');
 const chatMessages = document.querySelector('.chat-messages');
 const roomName = document.getElementById('room-name');
 const userList = document.getElementById('users');
+const logOutButton = document.getElementById('logout-btn')
+const userId = document.getElementById('userId-display')
 
 // Get username and room from URL
 const { username, room } = Qs.parse(location.search, {
