@@ -258,6 +258,9 @@ a {
 .btn:hover {
   filter: drop-shadow(3px 4px 5px black);
 }
+.id > p {
+  margin-top: 20px;
+}
 
 /* Container for the join (login/register) page */
 .join-container {
@@ -295,6 +298,17 @@ a {
 /* Form control styling inside join main content */
 .join-main .form-control {
   margin-bottom: 20px;
+}
+
+.join-main .form-control input {
+  font-size: 16px;
+  padding: 10px;
+  height: 40px;
+  width: 100%;
+  border: 1px solid var(--dark-color-b);
+  border-radius: 5px;
+  background-color: var(--light-color);
+  color: #262626;
 }
 
 /* Label styling inside join main content */
