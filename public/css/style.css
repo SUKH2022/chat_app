@@ -253,6 +253,48 @@ a {
   font-size: 16px;
   transition: background 0.3s;
 }
+.fixing_thing {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Adjust the spacing between elements */
+  background: var(--accent-color);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.join-loginArea {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Adjust the spacing between elements */
+}
+
+#userId-display {
+  color: white; /* Ensure text color is readable */
+  margin-right: 10px;
+}
+
+.btn {
+  cursor: pointer;
+  padding: 10px 20px;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background 0.3s;
+  background: var(--error-color);
+}
+
+.btn-logout {
+  background: var(--error-color);
+}
+
+.btn-leave {
+  background: var(--error-color);
+}
+
+.btn:hover {
+  filter: drop-shadow(3px 4px 5px black);
+}
 
 /* Hover effect for buttons */
 .btn:hover {
