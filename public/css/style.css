@@ -86,7 +86,7 @@ a {
 .chat-main {
   display: grid;
   grid-template-columns: 1fr 3fr;
-  height: 76.5vh;
+  height: 68.5vh;
 }
 
 .chat-sidebar {
@@ -148,14 +148,21 @@ a {
 }
 
 .chat-form-container {
-  padding: 10px 20px;
-  background-color: var(--dark-color-a);
-  border-top: 1px solid var(--dark-color-b);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    padding: 10px 20px;
+    background-color: var(--dark-color-a);
+    border-top: 1px solid var(--dark-color-b);
+    justify-content: space-between;
+    align-items: start;
+    display: flex;
+    flex-direction: column;
 }
 
+.userSelection{
+	  display: flex;
+  	justify-content: space-between;
+  	align-items: center;
+	color: white;
+}
 .chat-form-container form {
   display: flex;
   width: 100%;
