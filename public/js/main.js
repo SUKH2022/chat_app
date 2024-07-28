@@ -1,9 +1,48 @@
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
+import {
+  getAuth,
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/10.12.4/firebase-auth.js";
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyCAnITq87eQSIoBXmTr8hBnzttsuyssSws",
+  authDomain: "chat-app-43091.firebaseapp.com",
+  projectId: "chat-app-43091",
+  storageBucket: "chat-app-43091.appspot.com",
+  messagingSenderId: "1027178703055",
+  appId: "1:1027178703055:web:2252016be98d0f49efafba",
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+
 const chatForm = document.getElementById('chat-form');
 const chatMessages = document.querySelector('.chat-messages');
 const roomName = document.getElementById('room-name');
 const userList = document.getElementById('users');
 const logOutButton = document.getElementById('logout-btn')
 const userId = document.getElementById('userId-display')
+
+// set userID
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    userId.innerText = user.email;
+  } else {
+    window.location = '../index.html';
+  }
+});
+
+// Log Out Button
+logOutButton.addEventListener('click', () => {
+  signOut(auth).then(() => {
+    window.location = '../index.html'; // Redirect to login page after sign out
+  });
+});
 
 // Get username and room from URL
 const { username, room } = Qs.parse(location.search, {

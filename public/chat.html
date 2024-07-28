@@ -16,6 +16,10 @@
     <div class="chat-container">
       <header class="chat-header">
         <h1><i class="fab fa-rocketchat"></i> ChatOn</h1>
+        <div class="join-loginArea">
+					<p id="userId-display">Vansh</p>
+					<button id="logout-btn" class="btn"><i class="fa-solid fa-right-from-bracket"></i></button>
+				</div>
         <a id="leave-btn" class="btn">Leave Room</a>
       </header>
       <main class="chat-main">
@@ -47,6 +51,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="/socket.io/socket.io.js"></script>
-    <script src="js/main.js"></script>
+    <script type="module" src="./js/main.js"></script>
   </body>
 </html>
