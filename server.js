@@ -3,7 +3,13 @@ const http = require("http");
 const express = require("express");
 const socketio = require("socket.io");
 const formatMessage = require("./utils/messages");
-const { userJoin, getCurrentUser, userLeave, getRoomUsers } = require("./utils/users");
+const {
+  userJoin,
+  getCurrentUser,
+  userLeave,
+  getRoomUsers,
+} = require("./utils/users");
+const admin = require("firebase-admin");
 
 const app = express();
 const server = http.createServer(app);
@@ -11,6 +17,29 @@ const io = socketio(server);
 
 // Set static folder
 app.use(express.static(path.join(__dirname, "public")));
+app.use(express.json());
+
+// Firebase Admin SDK initialization
+admin.initializeApp({
+  credential: admin.credential.applicationDefault(),
+});
+
+// Login route
+app.post("/login", (req, res) => {
+  const idToken = req.body.idToken;
+
+  admin
+    .auth()
+    .verifyIdToken(idToken)
+    .then((decodedToken) => {
+      const uid = decodedToken.uid;
+      // Here, you can create a session for the user
+      res.status(200).json({ uid });
+    })
+    .catch((error) => {
+      res.status(401).json({ error: "Unauthorized" });
+    });
+});
 
 const botName = "ChatBot";
 
@@ -29,7 +58,10 @@ io.on("connection", (socket) => {
     // Broadcast when a user connects to the course
     socket.broadcast
       .to(user.room)
-      .emit("message", formatMessage(botName, `${user.username} has joined the chat`));
+      .emit(
+        "message",
+        formatMessage(botName, `${user.username} has joined the chat`)
+      );
 
     // Send users and room information
     io.to(user.room).emit("roomUsers", {
@@ -50,7 +82,10 @@ io.on("connection", (socket) => {
     const user = userLeave(socket.id);
 
     if (user) {
-      io.to(user.room).emit("message", formatMessage(botName, `${user.username} has left the chat`));
+      io.to(user.room).emit(
+        "message",
+        formatMessage(botName, `${user.username} has left the chat`)
+      );
 
       // Send users and room info
       io.to(user.room).emit("roomUsers", {
