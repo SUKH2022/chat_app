@@ -8,6 +8,7 @@ const {
   getCurrentUser,
   userLeave,
   getRoomUsers,
+  getUserByUsername
 } = require("./utils/users");
 const admin = require("firebase-admin");
 
@@ -75,6 +76,16 @@ io.on("connection", (socket) => {
     const user = getCurrentUser(socket.id);
 
     io.to(user.room).emit("message", formatMessage(user.username, msg));
+  });
+
+  // Listen for privateMessage
+  socket.on("privateMessage", ({ recipient, msg }) => {
+    const sender = getCurrentUser(socket.id);
+    const recipientUser = getUserByUsername(recipient);
+
+    if (recipientUser) {
+      io.to(recipientUser.id).emit('privateMessage', formatMessage(sender.username, msg));
+    }
   });
 
   // Runs when client disconnects

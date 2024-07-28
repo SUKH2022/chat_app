@@ -20,13 +20,13 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-
 const chatForm = document.getElementById('chat-form');
 const chatMessages = document.querySelector('.chat-messages');
 const roomName = document.getElementById('room-name');
 const userList = document.getElementById('users');
-const logOutButton = document.getElementById('logout-btn')
-const userId = document.getElementById('userId-display')
+const logOutButton = document.getElementById('logout-btn');
+const userId = document.getElementById('userId-display');
+const userSelect = document.getElementById('user-select');
 
 // set userID
 onAuthStateChanged(auth, (user) => {
@@ -69,12 +69,19 @@ socket.on('message', (message) => {
   chatMessages.scrollTop = chatMessages.scrollHeight;
 });
 
+// private messages
+socket.on('privateMessage', (message) => {
+  console.log(`Private message from ${message.username}: ${message.text}`);
+  outputPrivateMessage(message);
+});
+
 // Message submit
 chatForm.addEventListener('submit', (e) => {
   e.preventDefault();
 
   // Get message text
   let msg = e.target.elements.msg.value;
+  const recipient = userSelect.value;
 
   msg = msg.trim();
 
@@ -82,8 +89,13 @@ chatForm.addEventListener('submit', (e) => {
     return false;
   }
 
-  // Emit message to server
-  socket.emit('chatMessage', msg);
+  if (recipient) {
+    // Emit private message to server
+    socket.emit('privateMessage', { recipient, msg });
+  } else {
+    // Emit public message to server
+    socket.emit('chatMessage', msg);
+  }
 
   // Clear input
   e.target.elements.msg.value = '';
@@ -106,18 +118,39 @@ function outputMessage(message) {
   document.querySelector('.chat-messages').appendChild(div);
 }
 
+// Output private message to DOM
+function outputPrivateMessage(message) {
+  const div = document.createElement('div');
+  div.classList.add('private-message');
+  const p = document.createElement('p');
+  p.classList.add('meta');
+  p.innerText = `Private from ${message.username}`;
+  p.innerHTML += `<span> ${message.time}</span>`;
+  div.appendChild(p);
+  const para = document.createElement('p');
+  para.classList.add('text');
+  para.innerText = message.text;
+  div.appendChild(para);
+  document.querySelector('.chat-messages').appendChild(div);
+}
+
 // Add room name to DOM
 function outputRoomName(room) {
   roomName.innerText = room;
 }
 
-// Add users to DOM
+// Add users to DOM and user select dropdown
 function outputUsers(users) {
   userList.innerHTML = '';
+  userSelect.innerHTML = '<option value="">Select User</option>';
   users.forEach((user) => {
     const li = document.createElement('li');
     li.innerText = user.username;
     userList.appendChild(li);
+    const option = document.createElement('option');
+    option.value = user.username;
+    option.innerText = user.username;
+    userSelect.appendChild(option);
   });
 }
 
