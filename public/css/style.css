@@ -406,37 +406,37 @@ a {
 
 /* Container for the chat form and user selection */
 .chat-form-container {
-  padding: 10px 20px; /* Padding inside the container */
-  background-color: var(--dark-color-a); /* Background color */
-  border-top: 1px solid var(--dark-color-b); /* Border on the top */
-  display: flex; /* Use flexbox for layout */
-  align-items: center; /* Align items vertically in the center */
-  justify-content: space-between; /* Space out elements evenly */
+  padding: 10px 20px; 
+  background-color: var(--dark-color-a); 
+  border-top: 1px solid var(--dark-color-b); 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between;
 }
 
 /* Container for the user selection dropdown */
 .userSelection {
-  display: flex; /* Use flexbox for layout */
-  align-items: center; /* Align items vertically in the center */
-  color: white; /* Text color */
+  display: flex; 
+  align-items: center; 
+  color: white; 
 }
 
 /* Paragraph inside user selection area */
 .userSelection p {
-  margin: 0; /* Remove default margin */
-  margin-right: 10px; /* Space to the right of the paragraph */
-  font-weight: bold; /* Make text bold */
+  margin: 0; 
+  margin-right: 10px; 
+  font-weight: bold; 
 }
 
 /* Dropdown for user selection */
 .userSelection select {
-  padding: 10px; /* Padding inside the dropdown */
-  border-radius: 5px; /* Rounded corners */
-  border: 1px solid var(--dark-color-b); /* Border color */
-  background-color: var(--light-color); /* Background color */
-  color: var(--dark-color-a); /* Text color */
-  font-size: 16px; /* Font size */
-  outline: none; /* Remove default outline */
+  padding: 10px; 
+  border-radius: 5px; 
+  border: 1px solid var(--dark-color-b); 
+  background-color: var(--light-color); 
+  color: var(--dark-color-a); 
+  font-size: 16px; 
+  outline: none; 
 }
 
 /* Form for sending messages */
@@ -463,28 +463,27 @@ a {
 
 /* Focus state for the text input */
 .chat-form-container input[type="text"]:focus {
-  background: var(--input-focus-color); /* Background color on focus */
-  color: black; /* Text color on focus */
-}
+  background: var(--input-focus-color); 
+  color: black; 
 
 /* Send button */
 .chat-form-container .btn {
-  background: var(--accent-color); /* Background color */
-  padding: 10px 15px; /* Padding inside the button */
-  border-radius: 20px; /* Rounded corners */
-  font-size: 16px; /* Font size */
-  display: flex; /* Use flexbox for layout */
-  align-items: center; /* Align items vertically in the center */
-  justify-content: center; /* Center items horizontally */
-  color: white; /* Text color */
-  border: none; /* Remove default border */
-  cursor: pointer; /* Pointer cursor on hover */
+  background: var(--accent-color); 
+  padding: 10px 15px; 
+  border-radius: 20px; 
+  font-size: 16px; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  color: white; 
+  border: none; 
+  cursor: pointer; 
 }
 
 /* Icon inside the send button */
 .chat-form-container .btn i {
-  margin-left: 5px; /* Space to the left of the icon */
-  margin-right: 0.5rem; /* Space to the right of the icon */
+  margin-left: 5px; 
+  margin-right: 0.5rem; 
 }
 
 /* Responsive styling for chat main layout */

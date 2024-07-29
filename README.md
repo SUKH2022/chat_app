@@ -17,7 +17,12 @@ Welcome to the **ChatOn App**! This application allows users to join chat rooms 
 - Real-time chat functionality
 - Multiple chat rooms for course
 - User join/leave notifications
+- Allowing random name in chat
+- login /log-out from app
+- log-out
 - Responsive design
+- Google auth.
+- private Massage in group
 
 ## 🛠️ Installation
 
@@ -54,7 +59,6 @@ Follow these steps to get the project up and running on your local machine:
    http://....
    ```
 
-
 ## 🚀 Usage
 
 Once the server is running, you can:
@@ -75,7 +79,12 @@ const http = require("http");
 const express = require("express");
 const socketio = require("socket.io");
 const formatMessage = require("./utils/messages");
-const { userJoin, getCurrentUser, userLeave, getRoomUsers } = require("./utils/users");
+const {
+  userJoin,
+  getCurrentUser,
+  userLeave,
+  getRoomUsers,
+} = require("./utils/users");
 
 const app = express();
 const server = http.createServer(app);
@@ -98,7 +107,10 @@ io.on("connection", (socket) => {
     // Broadcast when a user connects
     socket.broadcast
       .to(user.room)
-      .emit("message", formatMessage(botName, `${user.username} has joined the chat`));
+      .emit(
+        "message",
+        formatMessage(botName, `${user.username} has joined the chat`)
+      );
 
     // Send users and room information
     io.to(user.room).emit("roomUsers", {
@@ -117,7 +129,10 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => {
     const user = userLeave(socket.id);
     if (user) {
-      io.to(user.room).emit("message", formatMessage(botName, `${user.username} has left the chat`));
+      io.to(user.room).emit(
+        "message",
+        formatMessage(botName, `${user.username} has left the chat`)
+      );
       io.to(user.room).emit("roomUsers", {
         room: user.room,
         users: getRoomUsers(user.room),
@@ -144,12 +159,12 @@ function userJoin(id, username, room) {
 
 // Get current user
 function getCurrentUser(id) {
-  return users.find(user => user.id === id);
+  return users.find((user) => user.id === id);
 }
 
 // User leaves chat
 function userLeave(id) {
-  const index = users.findIndex(user => user.id === id);
+  const index = users.findIndex((user) => user.id === id);
   if (index !== -1) {
     return users.splice(index, 1)[0];
   }
@@ -157,27 +172,27 @@ function userLeave(id) {
 
 // Get room users
 function getRoomUsers(room) {
-  return users.filter(user => user.room === room);
+  return users.filter((user) => user.room === room);
 }
 
 module.exports = {
   userJoin,
   getCurrentUser,
   userLeave,
-  getRoomUsers
+  getRoomUsers,
 };
 ```
 
 ### Message Formatting
 
 ```javascript
-const moment = require('moment');
+const moment = require("moment");
 
 function formatMessage(username, text) {
   return {
     username,
     text,
-    time: moment().format('h:mm a')
+    time: moment().format("h:mm a"),
   };
 }
 
@@ -187,9 +202,11 @@ module.exports = formatMessage;
 ## 📸 Screenshots
 
 ### Login Page
+
 ![Login Page](screenshots/login.png)
 
 ### Chat Room
+
 ![Chat Room](screenshots/chat.png)
 
 ## 🧩 Useful VS Code Extensions
