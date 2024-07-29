@@ -199,18 +199,13 @@ function formatMessage(username, text) {
 module.exports = formatMessage;
 ```
 
-<<<<<<< HEAD
 ## 📸 Screenshots
 
 ### Login Page
-
-![Login Page](image.png)
+![Login Page](screenshots/login.png)
 
 ### Chat Room
-
-![Chat Room](![chatroom page](image-1.png))
-=======
->>>>>>> 24eb4845216cd6ae7cef77c22c205318b229d1ad
+![Chat Room](screenshots/chat.png)
 
 ## 🧩 Useful VS Code Extensions
 
