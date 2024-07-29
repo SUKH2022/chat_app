@@ -465,6 +465,7 @@ a {
 .chat-form-container input[type="text"]:focus {
   background: var(--input-focus-color); 
   color: black; 
+}
 
 /* Send button */
 .chat-form-container .btn {
