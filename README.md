@@ -57,7 +57,11 @@ Follow these steps to get the project up and running on your local machine:
 
    ```
    https://chat-app-se2a.onrender.com/
+
    ```
+
+   google auth is not working while we public on render
+   but still it's working in local host
 
 ## 🚀 Usage
 
@@ -202,10 +206,12 @@ module.exports = formatMessage;
 ## 📸 Screenshots
 
 ### Login Page
-![Login Page](screenshots/login.png)
+
+![Login Page](image.png)
 
 ### Chat Room
-![Chat Room](screenshots/chat.png)
+
+![Chat Room](./image-1.png)
 
 ## 🧩 Useful VS Code Extensions
 
