@@ -40,7 +40,7 @@ window.loginWithGoogle = function () {
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
-      window.location.href = "chat.html";
+      window.location.href = "room.html";
     })
     .catch((error) => console.error("Error:", error));
 };
