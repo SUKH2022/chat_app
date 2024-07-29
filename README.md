@@ -51,7 +51,7 @@ Follow these steps to get the project up and running on your local machine:
 5. ## **Live Website Link:**
 
    ```
-   http://....
+   https://chat-app-se2a.onrender.com/
    ```
 
 
@@ -184,13 +184,6 @@ function formatMessage(username, text) {
 module.exports = formatMessage;
 ```
 
-## 📸 Screenshots
-
-### Login Page
-![Login Page](screenshots/login.png)
-
-### Chat Room
-![Chat Room](screenshots/chat.png)
 
 ## 🧩 Useful VS Code Extensions
 
