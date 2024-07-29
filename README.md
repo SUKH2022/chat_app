@@ -203,11 +203,11 @@ module.exports = formatMessage;
 
 ### Login Page
 
-![Login Page](screenshots/login.png)
+![Login Page](image.png)
 
 ### Chat Room
 
-![Chat Room](screenshots/chat.png)
+![Chat Room](![chatroom page](image-1.png))
 
 ## 🧩 Useful VS Code Extensions
 
